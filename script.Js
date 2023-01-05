@@ -20,8 +20,8 @@ function find(c){
     return 1;
 }
 //Set up the API key
-let APIKey="d1d1c7bcb9ef6d0effd63fca0dd08d01";
-// Display the curent and future weather to the user after grabing the city form the input text box.
+let APIKey="adcfbbe0fa623574f857c469ac9978d4";
+// Display the curent and future weather to the user after grabbing the city form the input text box.
 function displayWeather(event){
     event.preventDefault();
     if(searchCity.val().trim()!==""){
@@ -63,19 +63,19 @@ function currentWeather(city){
         UVIndex(response.coord.lon,response.coord.lat);
         forecast(response.id);
         if(response.cod==200){
-            sCity=JSON.parse(localStorage.getItem("cityname"));
+            sCity=JSON.parse(localStorage.getItem("cityName"));
             console.log(sCity);
             if (sCity==null){
                 sCity=[];
                 sCity.push(city.toUpperCase()
                 );
-                localStorage.setItem("cityname",JSON.stringify(sCity));
+                localStorage.setItem("cityName",JSON.stringify(sCity));
                 addToList(city);
             }
             else {
                 if(find(city)>0){
                     sCity.push(city.toUpperCase());
-                    localStorage.setItem("cityname",JSON.stringify(sCity));
+                    localStorage.setItem("cityName",JSON.stringify(sCity));
                     addToList(city);
                 }
             }
@@ -141,9 +141,9 @@ function invokePastSearch(event){
 // render function
 function loadlastCity(){
     $("ul").empty();
-    const sCity = JSON.parse(localStorage.getItem("cityname"));
+    const sCity = JSON.parse(localStorage.getItem("cityName"));
     if(sCity!==null){
-        sCity=JSON.parse(localStorage.getItem("cityname"));
+        sCity=JSON.parse(localStorage.getItem("cityName"));
         for(i=0; i<sCity.length;i++){
             addToList(sCity[i]);
         }
@@ -156,7 +156,7 @@ function loadlastCity(){
 function clearHistory(event){
     event.preventDefault();
     sCity=[];
-    localStorage.removeItem("cityname");
+    localStorage.removeItem("cityName");
     document.location.reload();
 
 }
@@ -210,86 +210,6 @@ $("#clear-history").on("click",clearHistory);
 
 
 
-// // function GetInfo(){
-// //     const newName = document.getElementById("cityInput");
-// //     const CityName = document.getElementById("cityName");
-// //     CityName.innerHTML = "--"+newName.value+"--"
-// // }
-
-// let appId = 'a71e1dbc556af89167017b8f90cda21e';
-// let units = 'imperial';
-// let searchMethod ;
-
-// function getSearchMethod(searchTerm) {
-//     if(searchTerm.length === 5 && Number.parseInt(searchTerm) + "" === searchTerm)
-//     searchMethod = 'zip';
-//     else 
-//     searchMethod = 'q';
-// }
-
-// function searchWeather(searchTerm) {
-//     getSearchMethod(searchTerm);
-//     fetch(`https://api.openweathermap.org/data/2.5/weather?q${searchMethod}=${searchTerms}&APPID=${appId}&units=${units}`)
-//  .then(result => {
-//     return result.json()
-//   }) .then(result => {
-//     init(result);
-//   })
-// }
-
-// // function init(resultFromServer) {
-// //   switch(resultFromServer.weather[0].main) {
-// //     case 'Clear':
-// //          document.body.style.background ='url("clear.jpg")';
-// //     break;
-// //     case 'Clouds':
-// //          document.body.style.background ='url("cloud.jpg")';
-// //     break;
-// //     case 'Rain':
-// //         case ' Drizzle':
-// //             case 'Mist':
-// //           document.body.style.background ='url("rain.jpg")';
-// //     break;
-
-// //     case 'Thunderstorm':
-// //         document.body.style.background ='url("storm.jpg")';
-// //         break;
-
-// //         case 'Snow':
-// //           document.body.style.background ='url("snow.jpg")';
-// //         break;
-
-// //         default:
-// //             break;
-
-// //   }
-
-
-// let weatherDescriptionHeader = document.getElementById('weatherDescriptionHeader');
-// let temperatureElement = document.getElementById('temp');
-// let humidityElement = document.getElementById('humidity');
-// let windSpeedElement = document.getElementById('day1WindSpeed');
-// let cityHeader = document.getAnimations('cityName');
-// let weatherIcon = document.getAnimations('img1');
-
-// weatherIcon.src=' http://openweathermap.org/img/wn/' + resultFromServer.weather[0].icon + '.png';
-
-// let resultDescription = resultFromServer.weather[0].description;
-// weatherDescriptionHeader.innerText = resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1);
-
-// temperatureElement.innerHTML = Math.floor(resultFromServer.main.temp) + '°';
-// windSpeedElement.innerHTML = 'Winds at' + Math.floor(resultFromServer.wind.speed) + 'm/s';
-// cityHeader.innerHTML = resultFromServer.name;
-// humidityElement.innerHTML = 'humidity levels at' + resultFromServer.main.humidity + ' %';
-
-
-
-
-// document.getElementById("searchBtn").addEventListener('click',() => {
-//  let searchTerm = document.getElementById("searchInput").value;
-//  if(searchTerm)
-//   searchWeather(searchTerm);
-// })
 
 
 
@@ -306,45 +226,9 @@ $("#clear-history").on("click",clearHistory);
 
 
 
-// fetch("https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=a71e1dbc556af89167017b8f90cda21e")
-// .then(response => response.json())
-// .then(data => {
-//     for(i=0; i<5; i++){
-//     document.getElementById("day" + (i+1)+ "Temp").innerHTML = "Temp:" + Number(data.list[i].main.temp -278.52).toFixed(1) + "°";
-//     }
 
-//     // for(i=0; i<5; i++){
-//     // document.getElementById("day" + (i+1)+ "Max").innerHTML = "Max:" + Number(data.list[i].main.temp_max -288.53).toFixed(1) + "°";
-//     // }
 
-//     for(i=0; i<5; i++){
-//         document.getElementById("day" + (i+1)+ "Wind").innerHTML = "Wind:" + Number(data.list[i].main.Wind -2.24).toFixed(1) + "M/R";
-//     }
 
-//     for(i=0; i<5; i++){
-//         document.getElementById("day" + (i+1)+ "Max").innerHTML = "Man:" + Number(data.list[i].main.temp_max -288.53).toFixed(1) + "°";
-//     }
-// })
 
-// function DefaultScreen() {
-//     document.getElementById("cityInput").defaultValue = "London";
-//     GetInfo()
-// }
 
-// const d = new Date();
-// const weekday = ["Sunday", "Monday", " Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-// const todayDate = dayjs().format('MM DD, YYYY');
-
-// function CheckDay(day) {
-//    if(day +d.getDay() > 6 ){
-//     return day +d.getDay()-7;
-
-//    }else {
-//    return day +d.getDay();
-//   }
-// }
-
-// for (i = 0; i < 5; i++){
-//     document.getElementById("day" + (i+1)).innerHTML = weekday[CheckDay(i)] ;
-// }
 
